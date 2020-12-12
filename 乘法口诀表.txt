@@ -1,0 +1,22 @@
+//输出n*n的乘法口诀表，n由用户输入。
+import java.util.Scanner;
+public class javademo {
+    public static void main(String[] args) {
+        System.out.println("请输入n");
+       Scanner sc=new Scanner(System.in);
+       int n=sc.nextInt();//用户的输入
+        multiplicationTable(n);
+        sc.close();
+
+    }
+    public static void multiplicationTable(int n){
+        int i=1;
+        int j=1;
+        for (i = 1; i <=n; i++) {
+            for (j = 1; j <=i; j++) {
+                System.out.print(i+"*"+j+"="+i*j+" ");
+            }
+            System.out.println();
+        }
+    }
+}
