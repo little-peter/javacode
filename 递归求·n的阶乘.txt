@@ -1,0 +1,17 @@
+import java.util.Scanner;
+public class javademo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("please input n");
+        int n = sc.nextInt();
+        int ret=nFac(n);
+        System.out.printf("%d 的阶乘为 %d\n",n,ret);
+    }
+    public static int nFac(int n){
+        if(n==1){
+            return 1;
+        }
+        return n*nFac(n-1);
+    }
+}
+
