@@ -1,0 +1,23 @@
+写一个递归方法，输入一个非负整数，返回组成它的数字之和
+import java.util.Scanner;
+public class javademo {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("请输入一个非负整数");
+        int n=sc.nextInt();
+
+        int ret=SumInteger(n);
+
+        System.out.println(ret);
+    }
+
+    public static int SumInteger(int n) {
+        int sum=0;
+        if(n!=0) {
+            int i=n%10;
+            n=n/10;
+            sum=i+SumInteger(n);
+        }
+        return sum;
+    }
+}
