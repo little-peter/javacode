@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class javademo {
+    public static void main(String[] args) {
+Scanner sc=new Scanner(System.in);
+        System.out.println("请输入n，最好别太大");
+int n=sc.nextInt();
+int ret=factor(n);
+        System.out.println("ret="+ret);
+    }
+    public static int factor(int n){
+        if(n==1){
+            return 1;
+        }
+        return n*factor(n-1);//factor 调用函数自身
+    }
+}
