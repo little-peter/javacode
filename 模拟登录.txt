@@ -1,0 +1,28 @@
+//编写代码模拟三次密码输入的场景。 最多能输入三次密码，密码正确，提示“登录成功”,密码错误， 可以重新输 入，
+最多输入三次。三次均错，则提示退出程序
+
+
+答题
+import java.util.Scanner;
+public class javademo {
+    public static void main(String[] args) {
+        System.out.println("请输入密码");
+       Scanner sc=new Scanner(System.in);
+      int number=123456;
+        for (int i = 3; i>0; ) {
+            if(sc.nextInt()==number){
+                System.out.println("密码正确");
+                System.out.println("登陆成功");
+                break;
+            }else{
+                System.out.println("密码错误,请重新输入");
+                i--;
+                System.out.printf("你还有%d次机会\n",i);
+
+            }
+
+        }
+        sc.close();
+
+    }
+}
