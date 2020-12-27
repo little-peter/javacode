@@ -1,0 +1,35 @@
+//在同一个类中定义多个方法：要求不仅可以求两个整数的最大值，还可以求两个小数的最大值，以及两个小数和一个整数的大小关系
+
+import java.util.Scanner;
+public class javademo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入要比较的两个数");
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        System.out.println("较大数的值为:"+max(a,b));
+        double i = sc.nextDouble();
+        double j = sc.nextDouble();
+        System.out.println("两个小数中最大的是："+max(i,j));
+        double x = sc.nextDouble();
+        double y = sc.nextDouble();
+        int k = sc.nextInt();
+        System.out.println("两个小数和一个整数中最大的是："+max(i,j,k));
+    }
+    public static int max(int a,int b){//此处也可用三目运算符
+        if(a>b){
+            return a;
+        }
+        return b;
+    }
+    public static double max(double a,double b){
+        if(a>b){
+            return a;
+        }
+        return b;
+    }
+    public static double max (double i,double j,int k) {
+        return max(max(i,j),k);
+    }
+
+}
