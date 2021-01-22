@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class javademo {
+    /*求斐波那契数列的第n项。(迭代实现)*/
+   public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       System.out.println("please input n");
+       int n=sc.nextInt();
+       int ret= fib(n);
+       System.out.printf("%d\n",ret);
+       sc.close();
+   }
+   public  static  int fib(int n){
+       int last1=1;
+       int last2=1;
+       int tmp=0;
+       for (int i = 3; i <=n ; i++) {
+           tmp=last1+last2;
+           last1=last2;
+           last2=tmp;
+       }
+       return tmp;
+   }
+}
+import java.util.Scanner;
+public class javademo {
+    /*求斐波那契数列的第n项。(递归实现)*/
+   public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       System.out.println("please input n");
+       int n=sc.nextInt();
+       int ret= fib(n);
+       System.out.printf("%d\n",ret);
+       sc.close();
+   }
+
+  public  static  int fib(int n){
+      if(n==1||n==2){
+          return 1;
+      }
+      return fib(n-1)+fib(n-2);
+  }
+
+}
+
