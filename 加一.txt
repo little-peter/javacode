@@ -1,0 +1,17 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+int j;
+for(j=digits.length-1;j>=0;j--){
+    if(digits[j]!=9){//大于8要进位
+digits[j]++;
+return digits;
+    }
+    digits[j]=0;
+}
+//跳出for循环，说明数字全部是9
+		int[] temp = new int[digits.length + 1];
+		temp[0] = 1;
+		return temp;
+}
+
+}
