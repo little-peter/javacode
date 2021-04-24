@@ -1,0 +1,38 @@
+
+
+正整数A和正整数B的最小公倍数是指能被A和B整除的最小的正整数值，
+设计—个算法，求输入A和B的最小公倍数。
+//首先来说这个题不难，但是做法我觉得很妙，代码也很简洁
+public class T {
+//辗转相除法求出最大公因数
+public static int gcd(int a,int b){
+    if(b==0){
+        return a;
+    }
+    return gcd(b,a%b);
+}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+//最小公倍数=两数相乘/最大公因数
+        System.out.println((a*b)/gcd(a,b));
+
+
+    }
+}
+思考：为什么下面这个代码不行
+ public static int gcd(int a,int b){
+   if(b==0){
+      return a;
+  }
+    return gcd(b,a%b);
+  }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+       System.out.println((a*b)/gcd(a,b));
+
+
+    }
