@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class T {
+   解法一：使用HsahMap
+
+ public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            String str=sc.nextLine();
+            char [] ch=str.toCharArray();
+            HashMap<Character,Integer> map=new HashMap<>();
+            for (char x:ch
+                 ) {
+                map.put(x,map.getOrDefault(x,0)+1);
+            }
+            boolean flag=true;
+            for (char x:ch
+                 ) {
+                if(map.get(x)==1){
+                    System.out.println(x);
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag){
+                System.out.println(-1);
+            }
+        }
+    }
+    }
