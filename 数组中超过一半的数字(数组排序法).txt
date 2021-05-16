@@ -1,0 +1,8 @@
+思想：超过一半的数字，排序后必定位于数组中间位置，但是此方法时间复杂度并非最优
+class Solution {
+    public int majorityElement(int[] nums) {
+//第一种：排序取中位数(时间O（nlogn），空间（O（1））)
+// Arrays.sort(nums);
+// return (nums[nums.length/2]);
+}
+}
