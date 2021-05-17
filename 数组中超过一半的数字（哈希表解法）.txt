@@ -1,0 +1,13 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+//第二种：建立哈希表法(时间O（n），空间（O（n/2））) 遍历数组 nums ，用 HashMap 统计各数字的数量，即可找出  。
+// HashMap<Integer,Integer> map=new HashMap<>();
+
+// for(int num:nums){
+//     map.put(num,map.getOrDefault(num,0)+1);
+//     if(map.get(num)>nums.length>>1)
+//     return num;
+// }
+// return 0;
+}
+}
