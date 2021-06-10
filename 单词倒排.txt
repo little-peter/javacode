@@ -1,0 +1,30 @@
+import java.util.Scanner;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextLine()) {
+            String origin = in.nextLine();
+            StringBuilder converted = new StringBuilder();
+            for(int j = 0; j < origin.length(); j++){
+                char c = origin.charAt(j);
+                if((c >= 'a' && c <= 'z')||(c >= 'A' && c <= 'Z')){
+                    converted.append(c);
+                }
+                else{
+                    converted.append(" ");
+                }
+            }
+            String[] str = converted.toString().split(" ");
+            StringBuilder res = new StringBuilder();
+            for(int i = str.length - 1; i >= 0; i--){
+                //str[i].isBlank();
+                if(!str[i].trim().isEmpty()){
+                    res.append(str[i]);
+                    res.append(" ");
+                }
+            }
+            System.out.println(res.toString().trim());
+        }
+    }
+}
