@@ -1,0 +1,47 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    //方法一
+//     public int[] reversePrint(ListNode head) {
+//      ListNode curNode=head;
+//      int len=0;
+//      //获取链表长度，创建对应长度数组
+//      while(curNode!=null){
+// curNode=curNode.next;
+// len++;
+//      }
+//      int[] result=new int[len];
+//      //再次遍历，填入
+//      curNode=head;
+//      while(curNode!=null){
+//          result[len-1]=curNode.val;
+//          len--;
+//          curNode=curNode.next;
+
+//      }
+// return result;
+
+//     }
+//方法二：栈
+  public int[] reversePrint(ListNode head) {
+      Stack<ListNode>stackk=new Stack<ListNode>();
+      ListNode tmp=head;
+      while(tmp!=null){
+          stackk.push(tmp);
+          tmp=tmp.next;
+      }
+      int size=stackk.size();
+      int []result=new int[size];
+      for(int i=0;i<size;i++){
+          result[i]=stackk.pop().val;
+      }
+      return result;
+  }
+}
+
