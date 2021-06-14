@@ -1,0 +1,18 @@
+1.递归此处略，效率低下运行超时
+2.动态规划：
+class Solution {
+    public int fib(int n) {
+if(n==0||n==1){
+    return n;
+}
+ int [] array=new int[n+1];//
+ array[0]=0;
+ array[1]=1;
+ for(int i=2;i<=n;++i){
+     //f(n)=f(n-1)+f(n-2);
+     array[i]=(array[i-1]+array[i-2])%1000000007;
+     //这是为了防止数据出错。因为随着n越来越大，对于一些语言，比如java，int类型的变量会无法储存结果，因此会产生数据错误。若提前对int型变量进行处理，比如这里的取模，那么数据规模就不会超过int型可以存储的最大数据，这样就不会出错。读题即可
+ }
+ return array[n];
+    }
+}
