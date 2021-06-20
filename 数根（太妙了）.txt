@@ -1,0 +1,32 @@
+将一正整数的各个位数相加(即横向相加)后，若加完后的值大于等于10的话
+，则继续将各位数进行横向相加直到其值小于十为止所得到的数，即为数根。
+换句话说，数根是将一数字重复做其数字之和，直到其值小于十为止，则所得的值
+为该数的数根。例如54817的数根为7，因为5+4+8+1+7=25，25大于10则再加一次，
+2+5=7，7小于十，则7为54817的数根。
+
+ import java.util.*;
+
+public class T {
+    public static void main(String[] args) {
+         Scanner sc=new Scanner(System.in);
+         while(sc.hasNext()){
+
+             String str=sc.next();
+             int num;
+             do {
+num=0;
+                 for (int i = 0; i <str.length() ; i++) {
+                     num+=str.charAt(i)-48;//eg:数字1字符1-48；参考AsCll码表
+                 }
+str=num+"";//缺少此步，输入29无反应，因为29经过do中流程后变为数字11,
+//而此时需要将其拼接为字符串，同时将num置零，继续寻找数根
+             }while(num>=10);
+             {
+                 System.out.println(num);
+             }
+         }
+        sc.close();
+
+    }
+    }
+
