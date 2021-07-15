@@ -1,0 +1,9 @@
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+    Set<Integer> ret=new HashSet<Integer>();
+for(int i:nums){
+    ret.add(i);
+}
+ return ret.size()<nums.length?true:false;
+    }
+}
