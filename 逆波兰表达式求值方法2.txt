@@ -1,0 +1,26 @@
+ class Solution {
+     public int evalRPN(String[] tokens) {
+ Deque<Integer> stack=new LinkedList();
+ for(String t:tokens){
+switch(t){
+    case("+"):
+    stack.push(stack.pop()+stack.pop());
+    break;
+     case("-"):
+     int num=stack.pop();
+     stack.push(stack.pop()-num);
+    break;
+     case("*"):
+     stack.push(stack.pop()*stack.pop());
+    break;
+     case("/"):
+     int num1=stack.pop();
+      stack.push(stack.pop()/num1);
+    break;
+    default:
+    stack.push(Integer.valueOf(t));
+}
+ }
+return stack.pop();
+     }
+ }
