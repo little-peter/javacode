@@ -1,0 +1,27 @@
+class Solution {
+    public String reverseLeftWords(String s, int n) {
+// String res="";
+// for(int i=n;i<s.length();i++){
+//     res+=s.charAt(i);//+=操作符会自动进行隐式类型转换。，但这种方法效率低下。
+// }
+// for(int i=0;i<n;i++){
+//     res+=s.charAt(i);
+// }
+// return res;
+// return s.substring(n)+s.substring(0,n);//偷懒做法
+int len=s.length();
+StringBuilder sb=new StringBuilder(s);
+reverseString(sb,0,n-1);
+reverseString(sb,n,len-1);
+return sb.reverse().toString();
+    }
+    public void reverseString(StringBuilder sb,int start,int end){
+        while(start<end){
+            char tmp=sb.charAt(start);
+            sb.setCharAt(start,sb.charAt(end));
+            sb.setCharAt(end,tmp);
+            start++;
+            end--;
+        }
+    }
+}
