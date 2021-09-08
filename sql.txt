@@ -1,0 +1,33 @@
+ -  查找最晚入职员工的所有信息 
+描述 有一个员工employees表简况如下: 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/cc1b0063c53c4528bbfab32b23b14b1f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGl0dGxlLXBldGVy,size_17,color_FFFFFF,t_70,g_se,x_16)## 思路一
+ - 知识点
+    ORDER BY 根据指定的列对结果集进行排序，默认按照升序，降序 ORDER BY DESC      LIMIT(m, n) 从第 m + 1 行开始取 n 条记录 
+    最晚员工自然是 hire_data，最晚可以用排序 ORDER BY DESC 降序来得到，然后是获取第一条记录，这样理论上是有 bug 的，因为 hire_data 可能有多个相同的记录
+```sql
+SELECT * FROM employees order by hire_date desc limit 0,1
+```
+ ##思路二
+ 
+    MAX 取最大值 
+    先获取所有最晚的 hire_date，然后把与其相等的记录取出来，
+    这个可以取多条，因此必定是正确的。
+```sql
+SELECT * FROM employees WHERE hire_date = (SELECT MAX(hire_date) FROM employees)
+```
+ -  查找入职员工时间排名倒数第三的员工所有信息 
+有一个员工employees表简况如下: 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/e88e212ae35447c58c289adb50480c9a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbGl0dGxlLXBldGVy,size_17,color_FFFFFF,t_70,g_se,x_16)解题思路：
+
+思路与第一题基本相同。将 employees 表中的信息按照 hire_date 降序排序，然后取排序后的第三条记录，即
+
+> ORDER BY hire_date DESC
+LIMIT 2,1
+
+ 解释一下 LIMIT 2,1 的意思：
+
+SQL 中，行号是从 0 开始的。所以 LIMIT 2,1 中， 2 是指从第三条记录开始，1 是指取一条记录。合起来就是，从第三条记录开始（包括第三条记录！），取一条记录。
+
+```sql
+select*from employees order by hire_date desc limit 2,1;
+```
