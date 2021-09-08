@@ -1,0 +1,30 @@
+//  Map 结构的 Value 使用 Boolean 类型是一个更好的选择，原因如下：
+
+//     一个字母出现的次数大于 1 次就不符合要求了，这个时候使用 Fasle 标记状态相对于 Integer 的不断递增更合理，也更省空间。
+//     布尔值可以用来判断，可以简化代码逻辑。
+在字符串 s 中找出第一个只出现一次的字符。如果没有，返回一个单空格。 s 只包含小写字母。
+
+示例:
+
+s = "abaccdeff"
+返回 "b"
+
+s = "" 
+返回 " "
+
+。
+class Solution {
+    public char firstUniqChar(String s) {
+Map<Character,Boolean>map=new HashMap<>();
+char[]ch=s.toCharArray();
+for(char c:ch){
+    map.put(c,!map.containsKey(c));
+}
+for(char c:ch){
+    if(map.get(c)){
+        return c;
+    }
+}
+return ' ';
+    }
+}
