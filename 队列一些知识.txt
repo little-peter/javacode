@@ -1,0 +1,19 @@
+public  class Try {
+
+        public static void main(String[] args) {
+                //看源码
+                Queue<Integer> queue=new LinkedList<Integer>();
+                //add和offer都是尾插，当没有空间时，add会抛出异常，而offer只会返回true或false。看源码
+                queue.add(1);
+                queue.offer(2);
+                //二者都是删除，用poll多点
+                queue.remove();
+                queue.poll();
+
+                //queue接口下没有addFirst等方法，因为其未实现，而LinkedList实现了
+                LinkedList<String>linkedList=new LinkedList<>();
+                linkedList.addFirst("1");
+        }
+
+
+}
