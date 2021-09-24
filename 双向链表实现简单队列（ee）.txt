@@ -1,0 +1,47 @@
+class Node{
+        public int val;
+        public Node next;
+        //提供构造方法
+        public Node(int val){
+                this.val=val;
+        }
+}
+//双向链表表实现栈
+public  class Try {
+public Node first;//头
+public Node last;//尾
+        public boolean offer(int val){
+                Node node=new Node(val);
+                if(this.first==null){
+                       this.first=node;
+                       this.last=node;
+                }else{
+                        this.last.next=node;
+                        this.last=node;
+                }
+                return true;
+        }
+        public int peek() throws RuntimeException{//在此声明一下可能会抛出这样的一个异常
+                if(isEmpty()){
+                        throw new RuntimeException("队列为空");//手动抛出异常
+                }
+                int ret=this.first.val;//保存值
+                this.first=this.first.next;
+                return ret;
+        }
+        public boolean isEmpty(){
+                if(this.last==null&&this.first==null){
+                        return true;
+                }
+                return false;
+        }
+
+        public static void main(String[] args) {
+                Try nana=new Try();
+                System.out.println(nana.isEmpty());
+                nana.offer(6);
+                System.out.println(nana.peek());
+                System.out.println(nana.isEmpty());
+        }
+}
+
