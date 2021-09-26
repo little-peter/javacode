@@ -1,0 +1,23 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+//  将表述翻译代码即可，使用递归实现。
+// 终止条件：root==null
+// 判断条件：如果左或右子树不平衡则不平衡，如果左右子树深度相差大于1则不平衡
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+if(root==null) return true;
+if(!isBalanced(root.left)||!isBalanced(root.right)) return false;
+if(Math.abs(depth(root.left)-depth(root.right))>1) return false;
+return true;
+    }
+    public int depth(TreeNode node){
+        return node==null?0:Math.max(depth(node.left),depth(node.right))+1;
+    }
+}
