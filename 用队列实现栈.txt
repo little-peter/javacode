@@ -1,0 +1,75 @@
+class MyStack {
+ private Queue<Integer>qu1;
+private Queue<Integer>qu2;
+    public MyStack() {
+qu1=new LinkedList<>();
+qu2=new LinkedList<>();
+    }
+    
+    public void push(int x) {
+//入不为空的队列
+if(!qu1.isEmpty()){
+    qu1.offer(x);
+}else if(!qu2.isEmpty()){
+    qu2.offer(x);
+}else{//都为空指定放到qu1里
+qu1.offer(x);
+}
+    }
+    public int pop() {
+        if(empty()){
+            return -1;
+        }
+//出不为空的队列，出size-1个到另一个空队列，再弹出剩余的一个元素
+if(!qu1.isEmpty()){
+    int size=qu1.size();
+   for(int i=0;i<size-1;i++){//这不可以调用qu1.size()，因为随每次循环进来qu1的size都会改变
+       qu2.offer(qu1.poll());
+   }
+   return qu1.poll();
+}else{
+ int size=qu2.size();
+   for(int i=0;i<size-1;i++){
+       qu1.offer(qu2.poll());
+   }
+   return qu2.poll();
+}
+    }
+    
+    public int top() {
+  if(empty()){
+            return -1;
+        }
+//出不为空的队列，出size-1个到另一个空队列，再弹出剩余的一个元素
+if(!qu1.isEmpty()){
+    int size=qu1.size();
+    int cur=-1;
+   for(int i=0;i<size;i++){
+       cur=qu1.poll();
+       qu2.offer(cur);
+   }
+   return cur;
+}else{
+ int size=qu2.size();
+ int cur=-1;
+   for(int i=0;i<size;i++){
+       cur=qu2.poll();
+       qu1.offer(cur);
+   }
+   return cur;
+}
+    }
+    
+    public boolean empty() {
+return qu1.isEmpty()&&qu2.isEmpty();
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
