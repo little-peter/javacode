@@ -1,0 +1,24 @@
+给你一个整数数组 nums ，除某个元素仅出现 一次 外，其余每个元素都恰出现 三次 。
+请你找出并返回那个只出现了一次的元素
+class Solution {
+    public int singleNumber(int[] nums) {
+// //1.最先想到的方法,使用了额外空间，放弃
+// HashMap<Integer,Integer> map=new HashMap<>();
+// for(int i=0;i<nums.length;i++){
+//     map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+// }
+// for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+//     if(entry.getValue()==1){
+//         return entry.getKey();
+//     }
+// }
+// return 0;
+//2.位运算
+ int a=0,b=0;
+        for(int num:nums){
+            a=~b&(a^num);
+            b=~a&(b^num);
+        }
+        return a;
+    }
+}
