@@ -1,0 +1,44 @@
+import java.util.*;
+
+/*
+ * public class ListNode {
+ *   int val;
+ *   ListNode next = null;
+ * }
+ */
+
+public class Solution {
+    /**
+     * 
+     * @param head ListNode类 the head
+     * @return bool布尔型
+     */
+    public boolean isPail (ListNode head) {
+        // write code here
+        if(head==null){
+            return false;
+        }
+        if(head.next==null){
+            return true;
+        }
+        
+        List<Integer>list=new ArrayList<>();
+        while(head!=null){
+            list.add(head.val);
+            head=head.next;
+        }
+        int len=list.size();
+        int front=0;
+        int tail=len-1;
+        while(front<tail){
+            if(list.get(front).equals(list.get(tail))){
+          //最开始用 == 去判断 一直a不掉原来时Integer类型的问题，equals完美解决
+                front++;
+                tail--;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+}
