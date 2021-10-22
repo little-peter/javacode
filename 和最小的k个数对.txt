@@ -1,0 +1,36 @@
+给定两个以升序排列的整数数组 nums1 和 nums2 , 以及一个整数 k 。
+
+定义一对值 (u,v)，其中第一个元素来自 nums1，第二个元素来自 nums2 。
+
+请找到和最小的 k 个数对 (u1,v1),  (u2,v2)  ...  (uk,vk) 。
+class Solution {
+    PriorityQueue<List<Integer>> pq;
+    List<List<Integer>> res;
+    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+        res = new ArrayList<>();
+        // 构建大根堆
+        pq = new PriorityQueue<>(new Comparator<List<Integer>>(){
+            @Override
+            public int compare(List<Integer> pair1, List<Integer> pair2) {
+                return pair2.get(0) + pair2.get(1) - pair1.get(0) - pair1.get(1);
+            }
+        });
+        for(int num1: nums1){
+            for(int num2: nums2){
+                List<Integer> pair = new ArrayList<>();
+                pair.add(num1);
+                pair.add(num2);
+                if(pq.size() < k){
+                    pq.offer(pair);
+                }else if(pq.peek().get(0) + pq.peek().get(1) > pair.get(0) + pair.get(1)){
+                    // 将小和的数对加入大根堆
+                    pq.poll();
+                    pq.offer(pair);
+                }
+            }
+        }
+        while(!pq.isEmpty())
+            res.add(pq.poll());
+        return res;
+    }
+}
