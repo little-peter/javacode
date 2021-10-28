@@ -1,0 +1,68 @@
+ 给定一个二叉树，返回该二叉树的之字形层序遍历，
+（第一层从左向右，下一层从右向左，一直这样交替）
+
+
+
+import java.util.*;
+/*
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public ArrayList<ArrayList<Integer> > Print(TreeNode pRoot) {
+          ArrayList<ArrayList<Integer>>res=new ArrayList<>();
+        if(pRoot==null){
+            return res;
+        }
+       Stack<TreeNode>stack1=new Stack<>();//存放奇数层的节点
+        stack1.push(pRoot);
+        Stack<TreeNode>stack2=new Stack<>();//存放偶数层的节点
+        int level=1;//表示当前遍历第几层，奇数层顺序打印，偶数逆序
+        while(!stack1.isEmpty()||!stack2.isEmpty()){
+            if(level%2!=0){//处理奇数层
+                ArrayList<Integer>list=new ArrayList<>();
+                while(!stack1.isEmpty()){
+                    TreeNode node=stack1.pop();
+                    if(node!=null){
+                        list.add(node.val);
+                        //stack2保存下一层节点
+                        stack2.push(node.left);
+                        stack2.push(node.right);
+                    }
+                }
+                if(!list.isEmpty()){
+                    res.add(list);
+                    level++;
+                }
+                
+            }else{
+                //处理偶数层
+                  ArrayList<Integer>list=new ArrayList<>();
+                 while(!stack2.isEmpty()){
+                    TreeNode node=stack2.pop();
+                    if(node!=null){
+                        list.add(node.val);
+                        //stack2保存下一层节点
+                        stack1.push(node.right);
+                        stack1.push(node.left);
+                    }
+                }
+                if(!list.isEmpty()){
+                    res.add(list);
+                    level++;
+                }
+            }
+        }
+        return res;
+    }
+
+}
