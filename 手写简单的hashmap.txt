@@ -1,0 +1,89 @@
+//采用开散列，我们有一个长度为10的Node类型的数组，里面存放的是链表的头节点，发生冲突时我们向链表种加入元素我们采用头插法，注
+//jdk1.8开始采用尾插法
+//手写简单hashmap，
+ class HashBuck1{
+    static class Node {
+        public int key;
+        public int val;
+        public Node next;
+        public Node(int key, int val) {
+            this.key = key;
+            this.val = val;
+        }
+    }
+    public Node[] array;
+    public int usedSize;
+   //数组构造方法
+   public void HashBuck(){
+       this.array=new Node[8];//给小一点，方便后续测试
+   }
+   public void push(int key,int val){
+       Node node=new Node(key,val);
+       //计算插入位置
+       int index= key % array.length;
+       //插入之前判断key是否已经存在
+       Node cur=array[index];
+       while(cur!=null){
+           if(cur.key==key){
+               //key相同，之前的数据被覆盖
+               cur.val=val;
+               return;
+           }
+           cur=cur.next;//cur继续往后走
+       }
+       //走到这说明没有相同的key，那我们就头插,先绑后面，再绑前面
+       node.next=array[index];
+       array[index]=node;
+       this.usedSize++;
+       if(loadFactor()>=0.75){
+           //超过负载因子，需要进行扩容（我们这里进行2倍扩容，扩容是有代价的，因为我们得对所有的元素重新进行哈希）
+           resize();
+       }
+   }
+   //我们每次向哈希表中放入元素，要计算负载因子
+    public double loadFactor(){
+      return  this.usedSize*1.0 / this.array.length;
+    }
+    public void resize(){
+       Node[] newArray=new Node[2*array.length];
+       //遍历原来的数组，把原来数组中的元素重新哈希
+        for (int i = 0; i <array.length ; i++) {
+            //cur是每个数组元素下对象：链表的头
+            Node cur=array[i];
+            while(cur!=null){
+                int index=cur.key%newArray.length;
+                //因为我们要修改cur.next，但后面我们要使用，先另存一份
+                Node curNext=cur.next;
+                //头插
+                cur.next=newArray[index];
+                newArray[index].next=cur;
+                cur=curNext;
+            }
+        }
+        //代码走到这里，说明原来数组中的元素已经哈希到了新的数组当中
+        array=newArray;
+    }
+public int get(int key){
+       int index=key%array.length;
+       Node cur=array[index];
+       while(cur!=null){
+           if(cur.key==key){
+               return cur.val;
+           }
+           cur=cur.next;
+       }
+       return -1;//没找到
+}
+    public static void main(String[] args) {
+        HashBuck hashBuck=new HashBuck();
+        hashBuck.push(1,1);
+        hashBuck.push(2,2);
+        hashBuck.push(10,10);
+        hashBuck.push(4,4);
+        hashBuck.push(5,5);
+        hashBuck.push(6,6);//放完这个元素要扩容,打断点查看10元素位置的变化
+        hashBuck.push(7,7);
+        System.out.println(hashBuck.usedSize);
+
+    }
+}
