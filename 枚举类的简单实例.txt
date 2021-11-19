@@ -1,0 +1,41 @@
+public enum TestEnum {
+    RED, GREEN, BLACK;//枚举对象
+//1.switch语句
+    public static void main1(String[] args) {
+        TestEnum testEnum = TestEnum.BLACK;
+        switch (testEnum) {
+            case RED:
+                System.out.println("red");
+                break;
+            case BLACK:
+                System.out.println("black");
+                break;
+            case GREEN:
+                System.out.println("green");
+                break;
+            default:
+                break;
+        }
+    }
+
+    //Enum类的常用方法
+    //1:values 以数组形式返回枚举类型的所有成员  2:ordinal获取枚举成员的索引位置 3.valueOf 将普通枚举成员转化为具体实例
+    public static void main2(String[] args) {
+        TestEnum[]testEnums=TestEnum.values();
+        for (int i = 0; i < testEnums.length; i++) {
+            System.out.println(testEnums[i]+" "+testEnums[i].ordinal());
+        }
+        System.out.println("==============");
+        System.out.println(TestEnum.valueOf("GREEN"));
+    }
+    // compareTo比较两个枚举成员在定义时的顺序
+    public static void main(String[] args) {
+        //拿到枚举对象BLACK
+        TestEnum testEnum=TestEnum.BLACK;
+        //拿到枚举对象RED
+        TestEnum testEnum1=TestEnum.RED;
+        System.out.println(testEnum.compareTo(testEnum1));
+        System.out.println(BLACK.compareTo(RED));
+        System.out.println(RED.compareTo(BLACK));
+    }
+}
