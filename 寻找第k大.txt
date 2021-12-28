@@ -1,0 +1,23 @@
+
+
+1：优先级队列
+import java.util.*;
+
+public class Solution {
+    public int findKth(int[] a, int n, int K) {
+        // 暂存K个较大的值，优先队列默认是自然排序（升序），
+        //队头元素（根）是堆内的最小元素，也就是小根堆
+       PriorityQueue<Integer>queue=new PriorityQueue<>(K);
+        for(int num:a){
+            if(queue.size()<K){
+                queue.add(num);
+            }else{
+                if(num>queue.peek()){
+                    queue.poll();
+                    queue.add(num);
+                }
+            }
+        }
+        return queue.isEmpty()?0:queue.peek();
+}
+}
