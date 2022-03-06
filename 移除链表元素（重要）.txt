@@ -1,0 +1,55 @@
+给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。
+
+ 
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+ /*方法1 */
+//class Solution {
+//     public ListNode removeElements(ListNode head, int val) {
+// if(head==null) return head;
+// ListNode prev=head;
+// ListNode cur=prev.next;
+// while(cur!=null){
+//     if(cur.val==val){//删除
+// prev.next=cur.next;
+// //cur.next=null;
+//  cur = prev.next;//cur往后走
+//     }else{//不删除
+// cur=cur.next;
+// prev=prev.next;
+//     }
+// }
+// if(head.val==val){
+//   return head.next;
+// }
+// return head;
+//}
+class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        if (head == null) return head;
+        // 虚拟头结点
+        ListNode newHead = new ListNode(-1);
+        newHead.next = head;
+        ListNode prev = newHead;
+        ListNode cur = prev.next;
+        // 迭代
+        while (cur != null) {
+            if (cur.val == val) {
+                prev.next = cur.next;
+            } else {
+                prev = cur;
+            }
+            // 可以放在判断外边
+            cur = prev.next;
+        }
+        return newHead.next;
+    }
+}
