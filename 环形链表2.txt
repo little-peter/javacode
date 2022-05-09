@@ -1,0 +1,23 @@
+快慢指针在环内相遇后，快指针从 head 开始，慢指针从相遇开始，
+都一次走一步，最后会在入环结点相遇。
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+            	// 第一次相遇：环内相遇
+                fast = head;
+                while (fast != slow) {
+                    fast = fast.next;
+                    slow = slow.next;
+                }
+                // 第二次相遇：入环口
+                return slow;
+            }
+        }
+        return null;
+    }
+}

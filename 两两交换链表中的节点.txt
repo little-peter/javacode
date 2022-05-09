@@ -1,0 +1,37 @@
+给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。
+你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+ 
+ class Solution {
+    public ListNode swapPairs(ListNode head) {
+if (head == null) return null;
+        // 虚拟头结点
+        ListNode newHead = new ListNode(-1);
+        newHead.next = head;
+        ListNode prev = newHead;
+		// 保证有两个结点可以交换才进入循环，若只剩下一个结点，无需交换
+        while (prev.next != null && prev.next.next != null) {
+        	// 两个相邻结点
+            ListNode node1 = prev.next;
+            ListNode node2 = node1.next; 
+			// 更新3个指针
+            prev.next = node2;
+            node1.next = node2.next;
+            node2.next = node1;
+			// 更新下次迭代的前结点
+            prev = node1;
+        }
+        // 返回真正头结点
+        return newHead.next;
+    }
+}
+  
