@@ -1,0 +1,30 @@
+912
+给你一个整数数组 nums，请你将该数组升序排列。
+class Solution {
+    public int[] sortArray(int[] nums) {
+        quickSort(0,nums.length-1,nums);
+        return nums;
+    }
+    public static int pivot(int start,int end,int []array){
+    int tmp=array[start];
+    while(start<end){
+        while(start<end&&array[end]>=tmp){
+            end--;
+        }
+        array[start]=array[end];
+        while(start<end&&array[start]<=tmp){
+            start++;
+        }
+        array[end]=array[start];
+    }
+    array[start]=tmp;
+    return start;
+    }
+    public start void quickSort(int low,int high,int []array){
+        if(low<high){
+            int piv=pivot(low,high,array);
+            quickSort(low,piv-1,array);
+            quickSort(piv+1,high,array);
+        }
+    }
+}
