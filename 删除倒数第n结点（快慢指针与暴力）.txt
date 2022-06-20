@@ -1,0 +1,64 @@
+给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+
+ 
+
+示例 1：
+
+
+输入：head = [1,2,3,4,5], n = 2
+输出：[1,2,3,5]
+
+来源：力扣（LeetCode）
+链接：https://leetcode.cn/problems/remove-nth-node-from-end-of-list
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        // ListNode newNode=new ListNode(-1);
+        // newNode.next=head;
+        // int length=getLength(head);
+        // if(n==length){
+        //     return newNode.next.next;
+        // }
+        // ListNode tmp=head;
+        // for(int i=1;i<length-n;i++){
+        //  tmp=tmp.next;
+        // }
+        // tmp.next=tmp.next.next;
+        // return head;
+        ListNode newNode=new ListNode(-1);
+        newNode.next=head;
+        ListNode fast=head;
+        ListNode slow=head;
+        for(int i=0;i<n;i++){
+            fast=fast.next;
+        }
+        if(fast==null){
+            return newNode.next.next;
+        }
+        while(fast.next!=null){
+            fast=fast.next;
+            slow=slow.next;
+        }
+        slow.next=slow.next.next;
+        return newNode.next;
+    }
+    public int getLength(ListNode head){
+        ListNode tmp=head;
+        int length=0;
+        while(tmp!=null){
+         tmp=tmp.next;
+         length++;
+        }
+        return length;
+    }
+}
