@@ -1,0 +1,53 @@
+
+给定一个单链表 L 的头节点 head ，单链表 L 表示为：
+
+L0 → L1 → … → Ln - 1 → Ln
+请将其重新排列后变为：
+
+L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+ 
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+    //找到后半部分
+    ListNode fast=head;
+    ListNode slow=head;
+    while(fast.next!=null&&fast.next.next!=null){
+        fast=fast.next.next;
+        slow=slow.next;
+    }
+    //断开
+    ListNode cur=slow.next;
+    slow.next=null;
+    //翻转
+    ListNode pre=null,next=null;
+    while(cur!=null){
+        next=cur.next;
+        cur.next=pre;
+        pre=cur;
+        cur=next;
+    }
+    //插入
+    ListNode tmp=head;
+    while(pre!=null){
+        ListNode n1=tmp.next;
+        ListNode n2=pre.next;
+        tmp.next=pre;
+        pre.next=n1;
+        pre=n2;
+        tmp=n1;
+    }
+
+    }
+
+}
